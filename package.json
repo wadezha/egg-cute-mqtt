@@ -1,0 +1,53 @@
+{
+  "name": "egg-cute-mqtt",
+  "version": "1.2.0",
+  "description": "MQTT plugin for egg",
+  "eggPlugin": {
+    "name": "mqtt"
+  },
+  "types": "index.d.ts",
+  "keywords": [
+    "egg",
+    "eggPlugin",
+    "egg-plugin",
+    "egg-mqtt",
+    "cute-mqtt",
+    "mqtt"
+  ],
+  "dependencies": {
+    "mqtt": "^4.3.7",
+    "pify": "^2.3.0"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "egg": "latest-1",
+    "egg-bin": "^4.7.0",
+    "egg-ci": "^1.8.0",
+    "eslint": "^4.19.1",
+    "eslint-config-egg": "^7.0.0",
+    "supertest": "^3.1.0",
+    "utility": "^1.13.1"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "autod": "autod"
+  },
+  "ci": {
+    "version": "6, 8",
+    "license": true,
+    "services": "mqtt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wadezha/egg-cute-mqtt.git"
+  },
+  "author": "wadezha",
+  "license": "MIT"
+}
