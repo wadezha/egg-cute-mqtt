@@ -1,5 +1,5 @@
 
-import { Context } from "egg";
+import { Context, Application } from "egg";
 
 declare class MQTTClient {
   channel: MQTTChannel;

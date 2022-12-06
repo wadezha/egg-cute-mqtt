@@ -29,5 +29,4 @@ exports.mqtt = {
     inMiddleware: [],
     outMiddleware: [],
   }
-
 };

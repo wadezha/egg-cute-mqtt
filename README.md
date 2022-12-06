@@ -72,22 +72,42 @@ app.mqtt.channel.subscribe(topic, options);
 
 ```
 
-```js create class file on /app/mqtt/middleware to handle message
+```js create class file on /app/mqtt/middleware to base chain
 
-class Dispatcher {
+export class BaseChain {
   constructor(ctx) {
     this.ctx = ctx;
   }
 
-  async handle(topic, message) {
-    this.ctx.logger.info('dispatcher, topic: %s, message: %s', topic, message);
-
+  async next(...arg) {
     if (this.chain != null) {
-      await this.chain.handle(topic, message);
-      return;
+      return await this.chain.handle(...arg);
     }
 
-    return [topic, message];
+    return [...arg];
+  }
+}
+
+```
+
+```js create class file on /app/mqtt/middleware to handle message
+
+const BaseChain = require('./base_chain');
+
+class Dispatcher extends BaseChain {
+  constructor(ctx) {
+    super(ctx);
+  }
+
+  async handle(topic, message) {
+    try {
+      this.ctx.logger.info('dispatcher, topic: %s, message: %s', topic, message);
+
+      return await this.next(topic, message);
+    } catch(ex) {
+      this.ctx.logger.error(ex.message);
+      return [topic, message];
+    }
   }
 }
 
@@ -97,18 +117,23 @@ module.exports = Dispatcher;
 
 ```js create class file on /app/mqtt/middleware to handle publish
 
-class Encoder {
+
+const BaseChain = require('./base_chain');
+
+class Encoder extends BaseChain {
   constructor(ctx) {
-    this.ctx = ctx;
+    super(ctx);
   }
 
   async handle(topic, message, options) {
-    this.ctx.logger.info('Encoder, topic: %s, message: %s, options: %s', topic, message, options);
+    try {
+      this.ctx.logger.info('Encoder, topic: %s, message: %s, options: %s', topic, message, options);
 
-    if (this.chain) {
-      return await this.chain.handle(topic, message, options);
+      return await this.next(topic, message, options);
+    } catch(ex) {
+      this.ctx.logger.error(ex.message);
+      return [topic, message, options];
     }
-    return [topic, message, options];
   }
 }
 
