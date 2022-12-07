@@ -60,6 +60,14 @@ exports.mqtt = {
   // load into agent, default is close
   agent: false,
 };
+
+Note:
+1. If multi-threading is enabled on the server
+  - Topics recommends using shared subscription ($share/group_name/topic) 
+  - iot-cute-mqtt will automatically add the thread ID after the clientId, for example, clientId: 'client_id_18331'
+
+2. will.topic, will.payload, onlinePayload support ${clientId} replacement, for example onlinePayload: '${clientId}, online' will be replaced by 'client_id, online'
+
 ```
 
 Usage:
