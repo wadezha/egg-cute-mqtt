@@ -50,10 +50,12 @@ exports.mqtt = {
     },
     onlinePayload: 'online',
     topics: [],
-    // message middleware
-    inMiddleware: ['dispatcher'],
+    parserPath: '',
+    chainPath: '',
+    // subscribe middleware
+    inChain: ['dispatcher'],
     // publish middleware
-    outMiddleware: ['encoder'],
+    outChain: ['encoder'],
   },
   // load into app, default is open
   app: true,
@@ -80,29 +82,11 @@ app.mqtt.channel.subscribe(topic, options);
 
 ```
 
-```js create class file on /app/mqtt/middleware to base chain
+```js create class file on /app/mqtt/chain to handle message
 
-export class BaseChain {
-  constructor(ctx) {
-    this.ctx = ctx;
-  }
+import { Chain } from 'egg-cute-mqtt';
 
-  async next(...arg) {
-    if (this.chain != null) {
-      return await this.chain.handle(...arg);
-    }
-
-    return [...arg];
-  }
-}
-
-```
-
-```js create class file on /app/mqtt/middleware to handle message
-
-const BaseChain = require('./base_chain');
-
-class Dispatcher extends BaseChain {
+class Dispatcher extends Chain {
   constructor(ctx) {
     super(ctx);
   }
@@ -123,19 +107,19 @@ module.exports = Dispatcher;
 
 ```
 
-```js create class file on /app/mqtt/middleware to handle publish
+```js create class file on /app/mqtt/chain to handle publish
 
 
-const BaseChain = require('./base_chain');
+import { Chain } from 'egg-cute-mqtt';
 
-class Encoder extends BaseChain {
+class OutChain1 extends Chain {
   constructor(ctx) {
     super(ctx);
   }
 
   async handle(topic, message, options) {
     try {
-      this.ctx.logger.info('Encoder, topic: %s, message: %s, options: %s', topic, message, options);
+      this.ctx.logger.info('OutChain1, topic: %s, message: %s, options: %s', topic, message, options);
 
       return await this.next(topic, message, options);
     } catch(ex) {
@@ -145,10 +129,28 @@ class Encoder extends BaseChain {
   }
 }
 
-module.exports = Encoder;
+module.exports = OutChain1;
 
 ```
 
+```js create class file on /app/mqtt/parser to handle protocol
+
+
+import { Parser } from 'egg-cute-mqtt';
+
+class Cute extends Parser {
+  constructor(ctx) {
+    super(ctx);
+  }
+
+  async decode(hex) {
+    return '';
+  }
+}
+
+module.exports = Cute;
+
+```
 ### Multiple mqtt instance
 
 ```js
@@ -177,10 +179,12 @@ exports.mqtt = {
       },
       onlinePayload: 'online',
       topics: [],
-      // message middleware
-      inMiddleware: ['dispatcher'],
+      parserPath: 'mqtt/parser',
+      chainPath: 'mqtt/chain',
+      // subscribe middleware
+      inChain: ['dispatcher'],
       // publish middleware
-      outMiddleware: ['encoder'],
+      outChain: ['outChain1'],
     },
     // ...
   },
@@ -197,6 +201,7 @@ Usage:
 const client1 = app.mqtt.get('mqtt1');
 client1.channel.publish(topic, message, options);
 client1.channel.subscribe(topic, options);
+client1.parser.cute.decode(hex);
 
 const client2 = app.mqtt.get('mqtt2');
 client2.channel.publish(topic, message, options);

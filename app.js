@@ -10,7 +10,7 @@ module.exports = app => {
       app.mqtt.init();
       app.mqtt.config.topics.forEach(async (t) =>  {
         await app.mqtt.channel.subscribe(t.topic, t.options);
-      }); 
+      });
     }
     if (app.config.mqtt.clients) {
       for (const k of Object.keys(app.config.mqtt.clients)) {

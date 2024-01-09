@@ -1,8 +1,23 @@
 
-import { Context, Application } from "egg";
+import { Context } from "egg";
+
+export declare class Chain {
+  private chain;
+  private channel;
+  ctx: Context;
+  protected constructor(ctx: Context);
+  protected next(...args: any[]): Promise<void>;
+}
+
+export declare class Parser {
+  ctx: Context;
+  protected constructor(ctx: Context);
+}
 
 declare class MQTTClient {
   channel: MQTTChannel;
+  parser: any;
+  chain: any;
 }
 
 declare class MQTTChannel {
@@ -47,8 +62,10 @@ interface ClientConfig {
 
   options?: ClientOptions;
   topics: Array<any>;
-  inMiddleware: Array<string>;
-  outMiddleware: Array<string>;
+  parserPath: string;
+  chainPath: string;
+  inChain: Array<string>;
+  outChain: Array<string>;
 }
 
 interface EggClientConfig {

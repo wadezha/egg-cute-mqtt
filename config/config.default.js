@@ -26,8 +26,10 @@ exports.mqtt = {
   //   },
   //   onlinePayload: '',
   //   topics: [],
-  //   inMiddleware: [],
-  //   outMiddleware: [],
+  //   parserPath: '',
+  //   chainPath: '',
+  //   inChain: [],
+  //   outChain: [],
   // }
   // clients: {
   //   mqtt1: {
@@ -53,8 +55,10 @@ exports.mqtt = {
   //     },
   //     onlinePayload: '',
   //     topics: [],
-  //     inMiddleware: [],
-  //     outMiddleware: [],
+  //     parserPath: '',
+  //     chainPath: '',
+  //     inChain: [],
+  //     outChain: [],
   //   },
   //   mqtt2: {
   //     host: 'mqtt://127.0.0.1',
@@ -79,8 +83,10 @@ exports.mqtt = {
   //     },
   //     onlinePayload: '',
   //     topics: [],
-  //     inMiddleware: [],
-  //     outMiddleware: [],
+  //     parserPath: '',
+  //     chainPath: '',
+  //     inChain: [],
+  //     outChain: [],
   //   },
   // }
 };
