@@ -15,6 +15,7 @@ exports.mqtt = {
   //     connectTimeout: 30 * 1000,
   //     protocolId: 'MQTT',
   //     protocolVersion: 4,
+  //     dataFormat: 'HEX',
   //     clean: true,
   //     rejectUnauthorized: false,
   //     will: {
@@ -44,6 +45,7 @@ exports.mqtt = {
   //       connectTimeout: 30 * 1000,
   //       protocolId: 'MQTT',
   //       protocolVersion: 4,
+  //       dataFormat: 'JSON',
   //       clean: true,
   //       rejectUnauthorized: false,
   //       will: {
@@ -72,6 +74,7 @@ exports.mqtt = {
   //       connectTimeout: 30 * 1000,
   //       protocolId: 'MQTT',
   //       protocolVersion: 4,
+  //       dataFormat: 'HEX',
   //       clean: true,
   //       rejectUnauthorized: false,
   //       will: {

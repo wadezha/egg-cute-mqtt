@@ -46,6 +46,7 @@ interface ClientOptions {
   connectTimeout: number;
   protocolId: string;
   protocolVersion: number;
+  dataFormat: string;
   
   clean: boolean;
   rejectUnauthorized?: boolean;
