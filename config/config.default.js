@@ -18,6 +18,7 @@ exports.mqtt = {
   //     dataFormat: 'HEX',
   //     clean: true,
   //     rejectUnauthorized: false,
+  //     onlinePayload: '',
   //     will: {
   //       topic: 'client_id',
   //       payload: 'offline',
@@ -25,7 +26,6 @@ exports.mqtt = {
   //       retain: true
   //     },
   //   },
-  //   onlinePayload: '',
   //   topics: [],
   //   parserPath: '',
   //   chainPath: '',
@@ -48,6 +48,7 @@ exports.mqtt = {
   //       dataFormat: 'JSON',
   //       clean: true,
   //       rejectUnauthorized: false,
+  //       onlinePayload: '',
   //       will: {
   //         topic: 'client_id',
   //         payload: 'offline',
@@ -55,7 +56,6 @@ exports.mqtt = {
   //         retain: true
   //       },
   //     },
-  //     onlinePayload: '',
   //     topics: [],
   //     parserPath: '',
   //     chainPath: '',
@@ -77,6 +77,7 @@ exports.mqtt = {
   //       dataFormat: 'HEX',
   //       clean: true,
   //       rejectUnauthorized: false,
+  //       onlinePayload: '',
   //       will: {
   //         topic: 'client_id',
   //         payload: 'offline',
@@ -84,7 +85,6 @@ exports.mqtt = {
   //         retain: true
   //       },
   //     },
-  //     onlinePayload: '',
   //     topics: [],
   //     parserPath: '',
   //     chainPath: '',

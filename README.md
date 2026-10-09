@@ -41,6 +41,7 @@ exports.mqtt = {
       protocolVersion: 4,
       clean: true,
       rejectUnauthorized: false,
+      onlinePayload: 'online',
       will: {
         topic: 'client_id',
         payload: 'offline',
@@ -48,7 +49,6 @@ exports.mqtt = {
         retain: true
       },
     },
-    onlinePayload: 'online',
     topics: [],
     parserPath: '',
     chainPath: '',
