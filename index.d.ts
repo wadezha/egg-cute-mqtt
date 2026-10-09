@@ -14,13 +14,13 @@ export declare class Parser {
   protected constructor(ctx: Context);
 }
 
-declare class MQTTClient {
-  channel: MQTTChannel;
+declare class MqttClient {
+  channel: MqttChannel;
   parser: any;
   chain: any;
 }
 
-declare class MQTTChannel {
+declare class MqttChannel {
   publish(topic: string, message: any, options?: any): Promise<any>;
   subscribe(topic: string, options?: any): Promise<any>;
   unsubscribe(topic: string, options?: any): Promise<any>;
@@ -41,7 +41,7 @@ interface WillTopic {
 }
 
 interface ClientOptions {
-  keeplive: number;
+  keepalive: number;
   reconnectPeriod: number;
   connectTimeout: number;
   protocolId: string;
@@ -78,7 +78,7 @@ interface EggClientConfig {
 
 declare module 'egg' {
   interface Application {
-    mqtt: MQTTClient & Singleton<MQTTClient>;
+    mqtt: MqttClient & Singleton<MqttClient>;
   }
 
   interface EggAppConfig {

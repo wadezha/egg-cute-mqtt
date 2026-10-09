@@ -1,7 +1,7 @@
 {
   "name": "egg-cute-mqtt",
   "version": "1.12.0",
-  "description": "MQTT plugin for egg",
+  "description": "mqtt plugin for egg",
   "eggPlugin": {
     "name": "mqtt"
   },

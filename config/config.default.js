@@ -10,7 +10,7 @@ exports.mqtt = {
   //   password: 'password',
   //   clientId: 'client_id',
   //   options: {
-  //     keeplive: 60,
+  //     keepalive: 60,
   //     reconnectPeriod: 1000,
   //     connectTimeout: 30 * 1000,
   //     protocolId: 'MQTT',
@@ -40,7 +40,7 @@ exports.mqtt = {
   //     password: 'password',
   //     clientId: 'client_id',
   //     options: {
-  //       keeplive: 60,
+  //       keepalive: 60,
   //       reconnectPeriod: 1000,
   //       connectTimeout: 30 * 1000,
   //       protocolId: 'MQTT',
@@ -69,7 +69,7 @@ exports.mqtt = {
   //     password: 'password',
   //     clientId: 'client_id',
   //     options: {
-  //       keeplive: 60,
+  //       keepalive: 60,
   //       reconnectPeriod: 1000,
   //       connectTimeout: 30 * 1000,
   //       protocolId: 'MQTT',
